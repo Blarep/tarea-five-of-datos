@@ -41,14 +41,6 @@ int costo(char caracter)
 void pasar_m_ady(char matriz[][100],int filas,int columnas, int ady[][100*100])
 {
 	int peaje;
-	int nodos = filas*columnas;
-	for (int i = 0; i < nodos; i++)
-	{
-		for (int j = 0; j < nodos; j++)
-		{
-			ady[i][j]=100000;
-		}
-	}
 	for (int i = 0; i < filas; i++)
 	{
 		for (int j = 0; j < columnas; j++)
@@ -56,21 +48,37 @@ void pasar_m_ady(char matriz[][100],int filas,int columnas, int ady[][100*100])
 			if (j < columnas-1)
 			{
 				peaje = costo(matriz[i][j]);
-				ady[i*filas+j+1][j+i*columnas] = peaje;
+				ady[i*columnas+j+1][i*columnas+j] = peaje;
 				peaje = costo(matriz[i][j+1]);
-				ady[j+i*columnas][i*filas+j+1] = peaje;
+				ady[i*columnas+j][i*columnas+j+1] = peaje;
 			}
 			if (i < filas-1)
 			{
 				peaje = costo(matriz[i][j]);
-				ady[i*filas+j+1+columnas-1][j+i*columnas] = peaje;
+				ady[(i+1)*columnas+j][i*columnas+j] = peaje;
 				peaje = costo(matriz[i+1][j]);
-				ady[j+i*columnas][i*filas+j+1+columnas-1] = peaje;
-			}
-			
+				ady[i*columnas+j][(i+1)*columnas+j] = peaje;
+			}			
 		}
 	}
 }
+
+/*
+void floyd(int n, int a[N][N], int c[N][N])
+{	int i,j,k;
+	for(i=0; i<n; i++)
+   		for(j=0; j<n; j++)
+      		if(i==j)	a[i][i]=0;
+				else	a[i][j]=c[i][j];
+			for(k=0; k<n; k++)
+			{	for(i=0; i<n; i++)
+         			for(j=0; j<n; j++)
+            			if((a[i][k]+a[k][j])<a[i][j]) a[i][j]=a[i][k]+a[k][j];
+				resultados << "Matriz " << k+1 << endl;
+				escribaMatriz(n,a);
+         		resultados << endl;
+			}
+}*/
 
 int main()
 {
@@ -90,6 +98,10 @@ int main()
 		for (int j = 0; j < filas*columnas; j++)
 		{
 			ady[i][j]=100000;
+			if (i == j)
+			{
+				ady[i][j] = 0;
+			}
 		}
 	}
 	pasar_m_ady(matriz,filas,columnas,ady);
