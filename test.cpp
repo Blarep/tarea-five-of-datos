@@ -64,7 +64,7 @@ void pasar_m_ady(char matriz[][100],int filas,int columnas, int ady[][100*100])
 }
 
 
-void floyd(int n, int matrizbarata[][100*100], int ady[][100*100])
+void floyd(int n, int matrizbarata[][100*100],char matrizcamino[][100*100], int ady[][100*100])
 {	int i,j,k;
 	for(i=0; i<n; i++)
    		for(j=0; j<n; j++)
@@ -84,6 +84,7 @@ int main()
 	char matriz[filas][100];
 	int ady[filas*columnas][10000];
 	int matrizbarata[filas*columnas][10000];
+	char matrizcamino[filas*columnas][10000]
 	for (int i = 0; i < filas; i++)
 	{
 		for (int j = 0; j < columnas; j++)
@@ -111,7 +112,7 @@ int main()
 		}
 		cout << endl;
 	}
-	floyd(filas*columnas,matrizbarata,ady);
+	floyd(filas*columnas,matrizbarata,matrizcamino,ady);
 	for (int i = 0; i < filas*columnas; i++)
 	{
 		for (int j = 0; j < filas*columnas; j++)
