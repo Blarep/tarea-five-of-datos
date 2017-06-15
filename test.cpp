@@ -63,28 +63,27 @@ void pasar_m_ady(char matriz[][100],int filas,int columnas, int ady[][100*100])
 	}
 }
 
-/*
-void floyd(int n, int a[N][N], int c[N][N])
+
+void floyd(int n, int matrizbarata[][100*100], int ady[][100*100])
 {	int i,j,k;
 	for(i=0; i<n; i++)
    		for(j=0; j<n; j++)
-      		if(i==j)	a[i][i]=0;
-				else	a[i][j]=c[i][j];
+      		if(i==j)	matrizbarata[i][i]=0;
+				else	matrizbarata[i][j]=ady[i][j];
 			for(k=0; k<n; k++)
 			{	for(i=0; i<n; i++)
          			for(j=0; j<n; j++)
-            			if((a[i][k]+a[k][j])<a[i][j]) a[i][j]=a[i][k]+a[k][j];
-				resultados << "Matriz " << k+1 << endl;
-				escribaMatriz(n,a);
-         		resultados << endl;
+            			if((matrizbarata[i][k]+matrizbarata[k][j])<matrizbarata[i][j]) matrizbarata[i][j]=matrizbarata[i][k]+matrizbarata[k][j];
 			}
-}*/
+}
 
 int main()
 {
 	int filas,columnas;
 	cin >> filas >> columnas;
 	char matriz[filas][100];
+	int ady[filas*columnas][10000];
+	int matrizbarata[filas*columnas][10000];
 	for (int i = 0; i < filas; i++)
 	{
 		for (int j = 0; j < columnas; j++)
@@ -92,7 +91,6 @@ int main()
 			cin >> matriz[i][j];
 		}
 	}
-	int ady[filas*columnas][10000];
 	for (int i = 0; i < filas*columnas; i++)
 	{
 		for (int j = 0; j < filas*columnas; j++)
@@ -113,4 +111,14 @@ int main()
 		}
 		cout << endl;
 	}
+	floyd(filas*columnas,matrizbarata,ady);
+	for (int i = 0; i < filas*columnas; i++)
+	{
+		for (int j = 0; j < filas*columnas; j++)
+		{
+			cout << matrizbarata[i][j]<<" ";
+		}
+		cout << endl;
+	}
+	return 0;
 }
