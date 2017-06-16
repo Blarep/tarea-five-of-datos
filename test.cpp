@@ -9,22 +9,31 @@ void modificar_matriz(int filas, int columnas, int bot, int margarina, char tabl
 {
 	//Debemos recorrer la matriz de caminos buscando en la fila del bot y fijandonos
 	bool falta_camino_por_recorrer=true;
-	while(falta_camino_por_recorrer)
+	while (falta_camino_por_recorrer)
 	{
-		for (int j = 0; j < columnas*filas; j++)
+
+		int n_de_dato = 0;
+		if (matrizcamino[bot][margarina]==bot || matrizcamino[bot][margarina]==margarina)
 		{
-			if (j == margarina)
+			break;
+		}
+		for (int i = 0; i < filas; i++)
+		{
+			for (int j = 0; j < columnas; j++)
 			{
-				if(matrizcamino[bot][j]==margarina)
+				
+				if (n_de_dato == matrizcamino[bot][margarina])
 				{
-					return;
+					tablero[i][j] = '+';
+					i=filas;
+					break;
 				}
-				cout<<matrizcamino[bot][columnas]<<endl;
-				margarina = matrizcamino[bot][columnas];
-				break;
+				n_de_dato++;
 			}
 		}
+		margarina = matrizcamino[bot][margarina];
 	}
+
 }
 
 //Funcion para calcular el costo de avanzar esa casilla.
@@ -58,7 +67,7 @@ int costo(char caracter)
 	if (caracter == 'x')
 	{
 		//Debido a que no se puede pasar por aqui elegimos un valor muy grande para el costo de este camino.
-		return 100000;
+		return 200000;
 	}
 	return 0;
 }
@@ -206,7 +215,7 @@ int main()
 		for (int j = 0; j < filas*columnas; j++)
 		{
 			//Se agrega el valor.
-			ady[i][j]=100000;
+			ady[i][j]=200000;
 			//En caso de estar en la diagonal es 0.
 			if (i == j)
 			{
@@ -222,16 +231,8 @@ int main()
 	floyd(filas*columnas,matrizbarata,matrizcamino, ady);
 
 	//Una vez listas las matrices, podemos obtener el coste de llegar desde el bot a la mantequilla
-	cout << matrizbarata[bot][mantequilla];
+	cout << matrizbarata[bot][mantequilla]<<endl;
 
-	for (int i = 0; i < filas*columnas; i++)
-	{
-		for (int j = 0; j < filas*columnas; j++)
-		{
-			cout << matrizbarata[i][j]<<" ";
-		}
-		cout << endl;
-	}
 	for (int i = 0; i < filas*columnas; i++)
 	{
 		for (int j = 0; j < filas*columnas; j++)
@@ -241,5 +242,14 @@ int main()
 		cout << endl;
 	}
 	modificar_matriz(filas,columnas,bot,mantequilla,matriz,matrizcamino);
+
+	for (int i = 0; i < filas; i++)
+	{
+		for (int j = 0; j < columnas; j++)
+		{
+			cout << matriz[i][j]<<" ";
+		}
+		cout << endl;
+	}
 	return 0;
 }
