@@ -7,10 +7,23 @@ using namespace std;
 
 void modificar_matriz(int filas, int columnas, int bot, int margarina, char tablero[][100], int matrizcamino[][10000])
 {
-	//Debemos recorrer la matriz de caminos
-	for (int j = 0; j < filas*columnas; ++i)
+	//Debemos recorrer la matriz de caminos buscando en la fila del bot y fijandonos
+	bool falta_camino_por_recorrer=true;
+	while(falta_camino_por_recorrer)
 	{
-		
+		for (int j = 0; j < columnas*filas; j++)
+		{
+			if (j == margarina)
+			{
+				if(matrizcamino[bot][j]==margarina)
+				{
+					return;
+				}
+				cout<<matrizcamino[bot][columnas]<<endl;
+				margarina = matrizcamino[bot][columnas];
+				break;
+			}
+		}
 	}
 }
 
@@ -227,5 +240,6 @@ int main()
 		}
 		cout << endl;
 	}
+	modificar_matriz(filas,columnas,bot,mantequilla,matriz,matrizcamino);
 	return 0;
 }
