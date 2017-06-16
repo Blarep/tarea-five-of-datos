@@ -5,9 +5,13 @@
 
 using namespace std;
 
-void modificar_matriz(int filas, int columnas, int bot, int margarina, char tablero[][100])
+void modificar_matriz(int filas, int columnas, int bot, int margarina, char tablero[][100], int matrizcamino[][10000])
 {
-	for
+	//Debemos recorrer la matriz de caminos
+	for (int j = 0; j < filas*columnas; ++i)
+	{
+		
+	}
 }
 
 //Funcion para calcular el costo de avanzar esa casilla.
@@ -47,7 +51,7 @@ int costo(char caracter)
 }
 
 //Recibe un trablero y genera la matriz de adyacencia de este.
-void pasar_m_ady(char matriz[][100],int filas,int columnas, int ady[][100*100])
+void pasar_m_ady(char matriz[][100],int filas,int columnas, int ady[][10000])
 {
 	//Variable que almacenara el costo de moverse hacia aqui.
 	int peaje;
@@ -95,7 +99,7 @@ void pasar_m_ady(char matriz[][100],int filas,int columnas, int ady[][100*100])
 //Algoritmo de floyd extraido del apartado de material complementario del curso en Moodle.
 //Se a modificado para que, ademas de generar la matriz con los caminos mas baratos, cree
 //la matriz con los padres de cada casilla, para asi poder obtener el camino luego.
-void floyd(int n, int matrizbarata[][100*100],int matrizcamino[][100*100], int ady[][100*100])
+void floyd(int n, int matrizbarata[][10000],int matrizcamino[][10000], int ady[][10000])
 {	
 	//Variables para recorrer la matriz.
 	int i,j,k;
