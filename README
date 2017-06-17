@@ -1,0 +1,18 @@
+Andrés Navarro Galleguillos 		201673001-k
+José Bastián Follert Müller 		201673035-4
+Bárbara Uribe Cataldo 				201673074-5
+
+Supuestos considerados			:	Los datos ingresados serán correctos.
+									Se debe seguir el formato de inputs y outputs pedido.
+									La cuadrilla no superará las dimensiones 100*100.
+									Siempre habrá un bot y una mantequilla, y la cuadrilla podrá contenerlos.
+									El bot siempre tendrá un camino hacia la mantequilla.
+									El costo solo se aplica de la cuadrı́cula a la cual avanzó.
+									Se ocupó y modificó parte del código "Algoritmo de Floyd" presente en el
+									material complementario del curso.
+
+Tiempo de realización			:	12 horas aproximadamente.
+Estudiantes que no trabajaron	:	-
+Complicaciones					:	Lograr modificar el algoritmo de Floyd, para que se generara la matriz 
+									de los predecesores de cada nodo, que nos guiara al camino más corto.
+
